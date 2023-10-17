@@ -1,0 +1,71 @@
+#include<iostream>
+#include<conio.h>
+#include<random>
+#include<ctime>
+
+using namespace std;
+
+int main()
+{
+    bool gameRun=true, firstsTurn=true;;
+    int p1=0, p2=0; //scores
+    int dice=0, winningScore=20;
+    srand(time(0));
+    cout<<"Welcome to Snakes and Ladders. Press any key to roll dice. Turns will be alternate. Best of Luck! \n";
+    while(gameRun==true)
+    {
+        dice=((rand()%6)+1);
+        if (firstsTurn==true)
+        {
+            cout<<"Player 1's turn: ";
+            getch();
+            cout<<dice<<endl;
+            if(p1+dice>winningScore)
+            {
+                cout<<"Player 1's total: "<<p1<<"(move not possible)"<<endl;
+                firstsTurn=false;
+            }
+            else if(p1+dice<winningScore)
+            {
+                p1+=dice;
+                cout<<"Player 1's total: "<<p1<<endl;
+                firstsTurn=false;
+            }
+            else
+            {
+                p1+=dice;
+                cout<<"Player 1's total: "<<p1<<endl;
+                cout<<"\n\nPlayer 1 Won!!!";
+                gameRun=false;
+            }
+        }
+        else
+        {
+            cout<<"Player 2's turn: ";
+            getch();
+            cout<<dice<<endl;
+            if(p2+dice>winningScore)
+            {
+                cout<<"Player 2's total: "<<p2<<"(move not possible)"<<endl;
+                firstsTurn=true;
+                cout<<endl;
+            }
+            else if(p2+dice<winningScore)
+            {
+                p2+=dice;
+                cout<<"Player 2's total: "<<p2<<endl;
+                cout<<endl;
+                firstsTurn=true;
+            }
+            else
+            {
+                p2+=dice;
+                cout<<"Player 2's total: "<<p2<<endl;
+                cout<<"\nPlayer 2 Won!!!";
+                gameRun=false;
+            }
+        }
+        
+    }
+    return 0;
+}
