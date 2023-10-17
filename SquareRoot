@@ -1,0 +1,36 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int n;
+    double a=1.0; // initial guess
+    double sqroot=0.0;
+    cout<<"Enter a number whose square root is to be calculated: (-1 to exit) ";
+    cin>>n;
+    while(n!=-1)
+    {
+        if(n<-1)
+        {
+            cout<<"No real square root of negative number exits."<<endl;
+        }
+        else if(n==0)
+        {
+            cout<<"Square root of "<<n<<" is: 0"<<endl;
+        }
+        else if(n>0)
+        {
+            for (int i = 0; i < 19; i++)
+            {
+                sqroot=((a+(n/a))/2);
+                a=sqroot;
+            }
+            cout<<"Square root of "<<n<<" is: "<<sqroot<<endl;
+        }
+        cout<<"Enter a number whose square root is to be calculated: (-1 to exit) ";
+        cin>>n;
+    }
+    
+    return 0;
+}
+
