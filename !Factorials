@@ -1,0 +1,103 @@
+#include<iostream>
+using namespace std;
+
+long fac(int n)
+{
+    long fact=1;
+    int j=1;
+    if(n==0)
+        return 1;
+    else if(n>0)
+    {
+        while(j<=n)
+        {
+            fact*=j;
+            j++;
+        }
+    }
+    return fact;
+    
+}
+
+long nPr(int n, int r)
+{
+    long nPr=(fac(n)/fac(n-r));
+    return nPr;
+}
+long nCr(int n, int r)
+{
+    long nCr=((fac(n))/((fac(r))*(fac(n-r))));
+    return nCr;
+}
+long ncr(int n, int r)
+{
+    long ncr=((nPr(n,r))/(fac(r)));
+    return ncr;
+}
+
+void menu(int option)
+{
+    long result;
+    int n,r;
+    if (option!=5)
+    {
+            do
+        {
+            cout<<"Enter a positive value of n: ";
+            cin>>n;
+        } while (n<0);
+    } 
+    if((option>1)&&(option!=5))
+    {
+            do
+        {
+            cout<<"Enter a positive value of r: ";
+            cin>>r;
+        } while (r<0);
+    }
+
+    switch (option)
+    {
+    case 5:
+        cout<<"Exited successfully";
+        break;
+    case 1:
+        result=fac(n);
+        cout<<result;
+        break;
+    case 2:
+        result=nPr(n,r);
+        cout<<result;
+        break;
+    case 3:
+        result=nCr(n,r);
+        cout<<result;
+        break;
+    case 4:
+        result=ncr(n,r);
+        cout<<result;
+        break;
+    default:
+        break;
+    }
+
+}
+
+int main()
+{
+    int option;
+    cout<<"1 print factorial of number"<<endl; 
+    cout<<"2 print nPr"<<endl;
+    cout<<"3 print nCr"<<endl;
+    cout<<"4 print nCr using nPr"<<endl;
+    cout<<"5 Exit Program "<<endl;
+    do
+        {
+             cout<<"Enter a number from (1-5) from menu: ";
+             cin>>option;
+        } while (!((option>0)&&(option<6)));
+    menu(option);
+
+    return 0;
+}
+
