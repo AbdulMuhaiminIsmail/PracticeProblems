@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+int* mergeArrays(int A[], int B[], int m, int n)
+{
+    int i=0, j=0, k=0;
+    int* C = new int[m+n]; //dynamically allocates memory and we shall use it to send back pointer for the array
+    while((i!=m)&&(j!=n))
+    {
+        if(A[i]==B[j])
+        {
+            C[k]=A[i];
+            C[k+1]=B[j];
+            i++, j++, k=k+2;
+        }
+        else if(A[i]<B[j])
+        {
+            C[k]=A[i];
+            k++, i++;
+        }
+        else if(A[i]>B[j])
+        {
+            C[k]=B[j];
+            k++, j++;
+        }
+    }
+    if(i==m)
+    {
+        while(j!=n)
+        {
+            C[k]=B[j];
+            j++, k++;
+        }
+    }
+    if(j==n)
+    {
+        while(i!=m)
+        {
+            C[k]=A[i];
+            i++, k++;
+        }
+    }
+    return C; //pointer sent back to merged in main function
+    
+}
+
+int main() {
+    int m,n;
+    cout<<"Enter size of first array: ";
+    cin>>m;
+    int a[m];
+    for (int i = 0; i < m; i++)
+    {
+        cout<<"Enter element "<<i+1<<": ";
+        cin>>a[i];
+    }
+    cout<<"Enter size of second array: ";
+    cin>>n;
+    int b[n];
+    for (int i = 0; i < n; i++)
+    {
+        cout<<"Enter element "<<i+1<<": ";
+        cin>>b[i];
+    }
+    int* merged= mergeArrays(a,b,m,n);
+    cout<<"Merged Array: ";
+    for(int i=0; i<m+n; i++)
+        cout<<merged[i]<<" ";
+    return 0;
+}
